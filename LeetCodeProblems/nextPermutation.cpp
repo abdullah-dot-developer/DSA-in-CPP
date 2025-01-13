@@ -12,12 +12,12 @@ void nextPermutation(vector<int> &A, int n)
     {
         if (A[i] < A[i + 1])
         {
-            pivot = i;
+            pivot = i; // 2
             break;
         }
     }
 
-    // If there is no pivot point in case of array = {4, 3, 2, 1}; Simply reverse the array
+    // If there is no pivot point in case of array = {4, 3, 2, 1}; Simply reverse the array {1, 2, 3, 4}
     if (pivot == -1)
     {
         reverse(A.begin(), A.end());
@@ -25,20 +25,20 @@ void nextPermutation(vector<int> &A, int n)
     }
 
     // 2. next larger element
-    for (int i = n - 1; i > pivot; i--)
+    for (int i = n - 1; i > pivot; i--) // i > 2
     {
-        if (A[i] > A[pivot])
+        if (A[i] > A[pivot]) // 4 > 3
         {
-            swap(A[i], A[pivot]);
+            swap(A[i], A[pivot]); // {1, 2, 4, 3}
             break;
         }
     }
 
     // 3. Reverse (piv+1 to n-1)
-    // reverse(A.begin() + pivot + 1, A.end());
+    // reverse(A.begin() + pivot + 1, A.end()); // 3, 4
     // Or
-    int i = pivot + 1, j = n - 1;
-    while (i <= j)
+    int i = pivot + 1, j = n - 1; // i = 3, j = 3
+    while (i <= j)                // equal
     {
         swap(A[i++], A[j--]);
     }
@@ -59,7 +59,7 @@ int main()
     // Permutation is the possible combination of the elements of array in different ways like 123 can be arranged in combination as 123, 132, 213, 231, 312, 321
     // Lexicographic next permutation will always be greater number then its previous value.
 
-    vector<int> A = {1, 3, 2};
+    vector<int> A = {4, 3, 2, 1};
     int n = A.size();
 
     nextPermutation(A, n);
